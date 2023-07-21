@@ -13,6 +13,11 @@
         "projectId": "bbf19240-25c5-4bc6-be5b-b1ca3eaf31de"
       }
     },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
     "android": {
       "package": "com.avissan.GlucoMate"
     }
