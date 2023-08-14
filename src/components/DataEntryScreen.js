@@ -90,13 +90,14 @@ const DataEntryScreen = () => {
       alert('Wartość glukozy jest niepoprawna. Wprowadź wartość od 30 do 300 mg/dL');
       return;
     }
-  
-  
     if (insulin < 0 || insulin > 50) {
       alert('Wartość insuliny jest niepoprawna. Wprowadź wartość od 0 do 50 U');
       return;
     }
-  
+    if (wieght < 0 || wieght > 300) {
+      alert('Wartość wagi jest niepoprawna. Wprowadź wartość od 0 do 300 kg');
+      return;
+    }
     try {
       const docRef = await addDoc(collection(db, "entries"), {
         date: date,

@@ -369,7 +369,7 @@ const MainScreen = () => {
       let location = await getCurrentPositionAsync({});
       const latitude = location.coords.latitude;
       const longitude = location.coords.longitude;
-      const message = `Aktualnie mam BARDZO NISKI POZIOM GLUKOZY - Znajduje się ${latitude}, ${longitude}`;
+      const message = `Aktualnie mam BARDZO NISKI POZIOM GLUKOZY - Znajduje się - Lokalizacja: ${latitude}, ${longitude}`;
       const url = `sms:${phoneNumber}&body=${encodeURIComponent(message)}`;
       Linking.openURL(url);
     } catch (error) {

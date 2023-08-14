@@ -54,7 +54,8 @@
     "react-native-svg": "13.4.0",
     "react-native-tooltip": "^5.2.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "expo-print": "~12.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

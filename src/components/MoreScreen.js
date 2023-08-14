@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, setDoc, getDocs, collection, Timestamp, deleteDoc, addDoc, updateDoc } from 'firebase/firestore';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as FileSystem from 'expo-file-system';
+import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 
 const firebaseConfig = {
@@ -19,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
 
 
 const MoreScreen = () => {
@@ -168,6 +170,11 @@ const MoreScreen = () => {
   };
 
   const exportData = async () => {
+  const personalInfo = `Imię,${name}\nWiek,${age}\nWaga,${weight}\nTyp cukrzycy,${diabetesType}\nTyp insuliny,${insulinType}\nKontakt w nagłych wypadkach,${emergencyContact}\n`;
+
+  const medicineInfo = medicineList.map(medicine => 
+    `Nazwa leku,${medicine.name}\nIlość,${medicine.amount}\n`
+  ).join('\n');
     // Tworzenie nagłówka CSV z nazwami kolumn// juz działa
     const csvContent = 'Aktywność,Węglowodany,Data,Ciśnienie rozkurczowe,Poziom glukozy,Insulina,Ciśnienie skurczowe,Czas,Pora dnia,Waga\n';
 
@@ -180,14 +187,57 @@ const MoreScreen = () => {
     const path = FileSystem.documentDirectory + filename;
 
     try {
-      await FileSystem.writeAsStringAsync(path, csvContent + csvData, { encoding: FileSystem.EncodingType.UTF8 });
+      await FileSystem.writeAsStringAsync(path, personalInfo + medicineInfo + csvContent + csvData, { encoding: FileSystem.EncodingType.UTF8 });
       await Sharing.shareAsync(path);
     } catch (error) {
       alert('Nie udało się wyeksportować danych do pliku CSV');
       console.log(error);
     }
   };// juz działa
+  const exportDataToPdf = async () => {
+    // Dodanie informacji osobistych i informacji o lekach do zmiennej htmlContent
+    let htmlContent = `<h1>Informacje osobiste</h1><p>Imię: ${name}</p><p>Wiek: ${age}</p><p>Waga: ${weight}</p><p>Typ cukrzycy: ${diabetesType}</p><p>Typ insuliny: ${insulinType}</p><p>Kontakt w nagłych wypadkach: ${emergencyContact}</p>`;
+    htmlContent += "<h1>Apteczka</h1>";
+    medicineList.forEach(medicine => {
+      htmlContent += `<p>Nazwa leku: ${medicine.name}, Ilość: ${medicine.amount}</p>`;
+    });
 
+    // Dodanie nagłówka dla danych pomiarowych
+    htmlContent += "<h1>Dane Pomiarowe</h1>";
+  
+    // Dodawanie nagłówków do HTML
+    htmlContent += "<table><tr><th>Aktywność</th><th>Węglowodany</th><th>Data</th><th>Ciśnienie rozkurczowe</th><th>Poziom glukozy</th><th>Insulina</th><th>Ciśnienie skurczowe</th><th>Czas</th><th>Pora dnia</th><th>Waga</th></tr>";
+  
+    // Dodawanie danych do HTML
+    entriesData.forEach(entry => {
+      htmlContent += `<tr><td>${entry.activity}</td><td>${entry.carbohydrates}</td><td>${entry.date}</td><td>${entry.diastolicPressure}</td><td>${entry.glucoseLevel}</td><td>${entry.insulin}</td><td>${entry.systolicPressure}</td><td>${entry.time}</td><td>${entry.timeOfDay}</td><td>${entry.weight}</td></tr>`;
+    });
+  
+    htmlContent += "</table>";
+  
+    try {
+      // Generowanie pliku PDF
+      const { uri } = await Print.printToFileAsync({ 
+        html: htmlContent, 
+        base64: false,
+      });
+  
+      // Sprawdzanie, czy urządzenie jest zdolne do udostępniania plików
+      const isAvailable = await Sharing.isAvailableAsync();
+  
+      if (isAvailable) {
+        // Udostępnianie pliku PDF
+        await Sharing.shareAsync(uri);
+      } else {
+        console.log(`Sharing is not available on the device`);
+      }
+    } catch (error) {
+      console.log(`Error generating or sharing PDF: ${error}`);
+    }
+};
+
+  
+  
   return (
     <ScrollView style={styles.container}>
       {!showData &&
@@ -273,6 +323,11 @@ const MoreScreen = () => {
       <View style={styles.card}>
         <TouchableOpacity style={styles.button} onPress={exportData}>
           <Text style={styles.buttonText}>EKSPORTUJ DANE DO PLIKU .CSV</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.card}>
+      <TouchableOpacity style={styles.button} onPress={exportDataToPdf}>
+          <Text style={styles.buttonText}>EKSPORTUJ DANE DO PLIKU PDF</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
