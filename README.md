@@ -1,7 +1,7 @@
 # GlucoMate - Aplikacja Mobilna do Monitorowania Cukrzycy
 <p align="center">
-    <![icon](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/2287b87f-beaf-4ca6-8836-89d5b3e1ac73)
->
+![icon](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/f481c57b-4909-4c70-b4e6-7279e71f9b17)
+
 </p>
 ## Opis Projektu
 
