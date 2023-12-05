@@ -2,6 +2,9 @@
     <p align="center">
 ![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/6fc1ce3c-c773-4efc-8a6e-9b412543b4d5)
     </p>
+    <p align="center">
+   ![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/6fc1ce3c-c773-4efc-8a6e-9b412543b4d5)
+</p>
 ## Opis Projektu
 
 
