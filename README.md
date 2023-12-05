@@ -1,5 +1,6 @@
 # GlucoMate - Aplikacja Mobilna do Monitorowania Cukrzycy
 ## Opis Projektu
+![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/6fc1ce3c-c773-4efc-8a6e-9b412543b4d5)
 
 GlucoMate to aplikacja mobilna stworzona w celu wsparcia pacjentów cierpiących na cukrzycę poprzez codzienny monitoring ich stanu zdrowia. Projekt skupia się na efektywności, stabilności i intuicyjnym interfejsie użytkownika.
 ### Główne Funkcje
@@ -8,6 +9,7 @@ GlucoMate to aplikacja mobilna stworzona w celu wsparcia pacjentów cierpiących
     Analiza wyników i generowanie statystyk
     Dziennik z możliwością śledzenia dziennej aktywności
     Nawigacja ułatwiająca korzystanie z aplikacji
+    
 
 ### Technologie
 
