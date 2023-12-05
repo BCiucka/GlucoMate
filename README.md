@@ -15,7 +15,6 @@ GlucoMate to aplikacja mobilna stworzona w celu wsparcia pacjentów cierpiących
 ![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/190e358f-54c6-4082-99fc-86e6e02c92f7)
 ![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/2abc9125-26db-4984-8569-335b9612fceb)
 ![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/49ade8ad-1a0e-4a55-ad12-e608aab5247b)
-![obraz](https://github.com/BCiucka/ProjektInzynierksi_GlucoMate/assets/128985044/5dc33fa3-a2f2-485c-86de-b3abbc293c7a)
 
 ### Technologie
 
